@@ -1,0 +1,133 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<<<<<<< .working
+import model.BadTypeException;
+import model.NumStack;
+import model.RevPolishCalc;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the RevPolishCalc class.
+ * 
+ * @author Amena Rafiq
+ * @see    RevPolishCalc
+ */
+
+||||||| .merge-left.r53
+=======
+import model.InvalidExpressionException;
+import model.RevPolishCalc;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the RevPolishCalc class.
+ * 
+ * @author Amena Rafiq
+ * @see    RevPolishCalc
+ */
+
+>>>>>>> .merge-right.r67
+public class TestRevPolishCalc {
+
+<<<<<<< .working
+  RevPolishCalc revCalc;
+
+  @Before
+  public void setUp() {
+    revCalc = new RevPolishCalc();
+  }
+
+  //  @Test
+  //  public void testEvaluateReturnResult() throws IndexOutOfBoundsException, BadTypeException {
+  //    //method initially just returned 5
+  //    assertTrue(revCalc.evaluate("3 2 +") == 5);
+  //  }
+
+  @Test
+  public void testEvaluatePushPop() throws IndexOutOfBoundsException, BadTypeException {
+    //method now pushes and pops double values, but always adds them together 
+    assertTrue(revCalc.evaluate("3 2 +") == 5);
+    assertTrue(revCalc.evaluate("3.1 6.5 +") == 9.6);
+  }
+
+||||||| .merge-left.r53
+=======
+  RevPolishCalc revCalc;
+
+  @Before
+  public void setUp() {
+    revCalc = new RevPolishCalc();
+  }
+
+  //  @Test
+  //  public void testEvaluateReturnResult() throws IndexOutOfBoundsException, BadTypeException {
+  //    //method initially just returned 5
+  //    assertTrue(revCalc.evaluate("3 2 +") == 5);
+  //  }
+
+  @Test
+  public void testEvaluatePushPop() throws InvalidExpressionException {
+    //method now pushes and pops double values, but always adds them together 
+    assertTrue(revCalc.evaluate("3 2 +") == 5);
+    assertTrue(revCalc.evaluate("3.1 6.5 +") == 9.6);
+  }
+
+  @Test
+  public void testEvaluateReadOperator() throws InvalidExpressionException {
+    //method now reads operators 
+    assertTrue(revCalc.evaluate("3 2 -") == 1);
+    assertTrue(revCalc.evaluate("2.5 4 *") == 10);
+  }
+
+>>>>>>> .merge-right.r67
+  @Test
+<<<<<<< .working
+  public void testEvaluateReadOperator() throws IndexOutOfBoundsException, BadTypeException {
+    //method now reads operators 
+    assertTrue(revCalc.evaluate("3 2 -") == 1);
+    assertTrue(revCalc.evaluate("2.5 4 *") == 10);
+  }
+
+  @Test
+  public void testEvaluateLongerExpression() throws IndexOutOfBoundsException, BadTypeException {
+    //method now reads long expressions
+    assertTrue(revCalc.evaluate("3 2 - 6 *") == 6);
+    assertTrue(revCalc.evaluate("5 5 + 2 /") == 5);
+  }
+
+  @Test (expected = BadTypeException.class)
+  public void testEvaluateInvalidOperator () throws IndexOutOfBoundsException, BadTypeException {
+    //method now throws bad type expression for invalid operators 
+    assertTrue(revCalc.evaluate("3 2 - 6 m") == 6);
+||||||| .merge-left.r53
+=======
+  public void testEvaluateLongerExpression() throws InvalidExpressionException {
+    //method now reads long expressions
+    assertTrue(revCalc.evaluate("3 2 - 6 *") == 6);
+    assertTrue(revCalc.evaluate("5 5 + 2 /") == 5);
+  }
+
+  @Test (expected = InvalidExpressionException.class)
+  public void testEvaluateInvalidOperator () throws InvalidExpressionException {
+    //method now throws invalid type expression for invalid operators 
+    assertTrue(revCalc.evaluate("3 2 - 6 m") == 6);
+  }
+  
+  @Test (expected = InvalidExpressionException.class)
+  public void testEvaluateBadType () throws InvalidExpressionException {
+    //method now throws invalid type expression for invalid floats/doubles
+    assertTrue(revCalc.evaluate("3 h - 6 +") == 6);
+  }
+  
+  @Test (expected = InvalidExpressionException.class)
+  public void testEvaluateEmtpyExpression () throws InvalidExpressionException {
+    //method now throws invalid type expression for empty expressions
+    assertTrue(revCalc.evaluate("") == 6);
+    assertTrue(revCalc.evaluate(" ") == 6);
+>>>>>>> .merge-right.r67
+  }
+
+}

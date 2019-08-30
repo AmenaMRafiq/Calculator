@@ -1,0 +1,51 @@
+package application;
+
+import model.InvalidExpressionException;
+
+/**
+ * This class is a controller. (Add more explanation later and finish the javadoc before merge).
+ * Idea and code written by Dave Cohen, adapted into project by Amena Rafiq.
+ * 
+ * @author Dave Cohen Amena Rafiq 
+ */
+
+public class CalcController {
+  private CalcModel MyModel;
+  private CalcView MyView;
+
+  private void handleType(OpType type) {
+    if (type == OpType.INFIX) {
+      MyModel.setType(true);  
+    } else {
+      MyModel.setType(false);
+    }
+  }
+
+  private void handleEvaluate() throws InvalidExpressionException {
+    String question = MyView.getUserInput();
+    try {
+      MyModel.evaluate(question);
+    } catch (InvalidExpressionException e) {
+      MyView.setText(e.getMessage());
+    }
+    MyView.setText(MyModel.getValue(question));   
+  }
+
+  CalcController(CalcModel model, CalcView view) {
+    MyModel = model;
+    MyView = view;
+
+    view.addTypeObserver(this::handleType);
+
+    view.addEvaluateListener(() -> {
+      try {
+        this.handleEvaluate();
+      } catch (InvalidExpressionException e) {
+        try {
+          throw new InvalidExpressionException("Invalid Expression");
+        } catch (InvalidExpressionException e1) {
+        }
+      }
+    });
+  }
+}

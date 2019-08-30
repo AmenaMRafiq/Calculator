@@ -1,0 +1,19 @@
+package application;
+
+
+public class CalcMVCDriver {
+  
+  /**
+   * This class is just runs the main method. 
+   * (Add more explanation later and finish the javadoc before merge).
+   * Idea and code written by Dave Cohen, adapted into project by Amena Rafiq.
+   * 
+   * @author Dave Cohen Amena Rafiq 
+   */
+  
+  public static void main(String[] args) {       
+    CalcModel model = new CalcModel();
+    CalcView view = CalcView.getInstance();
+    new CalcController(model, view);
+  }
+}

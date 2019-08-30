@@ -1,0 +1,311 @@
+package test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import model.BadTypeException;
+import model.Entry;
+import model.Symbol;
+import model.Type;
+
+import org.junit.Test;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the Entry class.
+ * 
+ * @author Amena Rafiq
+ * @see    Entry
+ */
+public class TestEntry {
+
+  /**
+   * Test 0
+   * Tests the constructor to create an empty Entry object.
+   * This test is no longer needed as the constructor was edited to take an argument
+   */
+  //@Test
+  //public void testConstructor() {
+  //new Entry();
+  //}
+  
+  /**
+   * Test 1
+   * Tests the constructor to create an Entry object that takes a integer argument.
+   */
+  @Test
+  public void testIntegertConstuctor() {
+    //constructor was edited to take argument
+    //number attribute created
+    new Entry(5);
+  }
+  
+  /**
+   * Test 2
+   * Tests the constructor to create an Entry object that takes a float argument.
+   * 
+   */
+  @Test
+  public void testFloatConstructor() throws BadTypeException {
+    //getValue() method created
+    Entry n = new Entry(5.1);
+    assertTrue("value == 5.1", n.getValue() == 5.1);
+  }
+  
+  /**
+   * Test 3
+   * Tests the constructor to create an Entry object that takes a string argument.
+   */
+  @Test 
+  public void testStringConstructor() throws BadTypeException {
+    //new constructor to take a string, str attribute added, getter added 
+    Entry n = new Entry("3");
+    assertEquals(n.getString(), "3"); 
+  }
+  
+  /**
+   * Test 4
+   * Tests the constructor to create an Entry object that takes a string argument.
+   */
+  @Test 
+  public void testStringConstructorAgain() throws BadTypeException {
+    //testing getString() again with a lengthier string
+    Entry n = new Entry("3 + 2");
+    assertEquals(n.getString(), "3 + 2"); 
+  }
+  
+  /**
+   * Test 5
+   * Tests the constructor to create an Entry object that takes a string argument
+   * and recognise it as a Symbol. (1/7)
+   */
+  @Test  
+  public void testRecogniseSymbol1() throws BadTypeException {
+    //Symbol enum created, testing the first (out of seven) enum constant
+    //symbol attribute created 
+    //note: BadTypeException was created after test 15 and then 
+    //consequently added to this test so it would compile
+    Entry n = new Entry("("); 
+    assertEquals(n.getSymbol(), Symbol.LEFTBRACKET);
+  }
+  
+  /**
+   * Test 6
+   * Tests the constructor to create an Entry object that takes a string argument
+   * and recognise it as a Symbol. (2/7)
+   */
+  @Test  
+  public void testRecogniseSymbol2() throws BadTypeException {
+    Entry n = new Entry(")"); 
+    assertEquals(n.getSymbol(), Symbol.RIGHTBRACKET);
+  }
+  
+  /**
+   * Test 7
+   * Tests the constructor to create an Entry object that takes a string argument
+   * and recognise it as a Symbol. (3/7)
+   */
+  @Test  
+  public void testRecogniseSymbol3() throws BadTypeException {
+    Entry n = new Entry("*"); 
+    assertEquals(n.getSymbol(), Symbol.TIMES);
+  }
+  
+  /**
+   * Test 8
+   * Tests the constructor to create an Entry object that takes a string argument
+   * and recognise it as a Symbol. (4/7)
+   */
+  @Test  
+  public void testRecogniseSymbol4() throws BadTypeException {
+    Entry n = new Entry("/"); 
+    assertEquals(n.getSymbol(), Symbol.DIVIDE);
+  }
+  
+  /**
+   * Test 9
+   * Tests the constructor to create an Entry object that takes a string argument
+   * and recognise it as a Symbol. (5/7)
+   */
+  @Test  
+  public void testRecogniseSymbol5() throws BadTypeException {
+    Entry n = new Entry("+"); 
+    assertEquals(n.getSymbol(), Symbol.PLUS);
+  }
+  
+  /**
+   * Test 10
+   * Tests the constructor to create an Entry object that takes a string argument
+   * and recognise it as a Symbol. (6/7)
+   */
+  @Test  
+  public void testRecogniseSymbol6() throws BadTypeException {
+    Entry n = new Entry("-"); 
+    assertEquals(n.getSymbol(), Symbol.MINUS);
+  }
+  
+  /**
+   * Test 11
+   * Tests the constructor to create an Entry object for an invalid Symbol.
+   * (7/7)
+   * after the BadTypeException was created
+   * consequently this test would expect an exception
+   * this test has been repeated to expect an exception in test 18 
+   */
+  //@Test
+  //public void testRecogniseSymbol7() {
+  //  Entry n = new Entry("h"); 
+  //  assertEquals(n.getSymbol(), Symbol.INVALID);
+  //}
+  
+  /**
+   * Test 12
+   * Tests the constructor to create an Entry object for an valid Symbol.
+   * Tests the getType() method to return the type SYMBOL.
+   */
+  @Test 
+  public void testSymbolConstructor() throws BadTypeException {
+    //constructor that takes a symbol added
+    //type attribute added, type enum created and tested before continuing here
+    //getType() method added
+    //Symbol constructor created and edited to assign type at that moment
+    Entry n = new Entry(Symbol.PLUS);
+    assertEquals(n.getType(), Type.SYMBOL);
+    assertEquals(n.getSymbol(), Symbol.PLUS);
+    assertFalse(n.getSymbol() == Symbol.MINUS);
+  }
+  
+  /**
+   * Test 13
+   * Tests the getType() method to return the type NUMBER.
+   */
+  @Test 
+  public void testNumberType() throws BadTypeException {
+    //float constructor edited to assign type at that moment
+    Entry n = new Entry(5);
+    assertEquals(n.getType(), Type.NUMBER);
+  }
+  
+  /**
+   * Test 14
+   * Tests the getType() method to return the type STRING.
+   */
+  @Test 
+  public void testStringType() throws BadTypeException {
+    //string constructor edited to assign type
+    Entry n = new Entry("3 + 2");
+    assertEquals(n.getType(), Type.STRING);
+  }
+  
+  /**
+   * Test 15
+   * Tests if the getValue() method throws a BadTypeException
+   * for an Entry that doesn't hold a number attribute.
+   * 
+   * @see BadTypeException
+   */
+  @Test(expected = BadTypeException.class)
+  public void testNumberException() throws BadTypeException {
+    //created BadType exception class
+    //edited getValue() to throw BadTypeException if type is not number
+    Entry n = new Entry("string entry");
+    n.getValue();
+  }
+  
+  /**
+   * Test 16
+   * Tests if the getString() method throws a BadTypeException
+   * for an Entry that doesn't hold a str attribute.
+   * 
+   * @see BadTypeException
+   */
+  @Test (expected = BadTypeException.class)
+  public void testStringException() throws BadTypeException {
+    //edited getString() to throw BadTypeException if type is not string
+    Entry n = new Entry(5);
+    n.getString();
+  }
+  
+  /**
+   * Test 17
+   * Tests if the getSymbol() method throws a BadTypeException
+   * for an Entry that doesn't hold an other attribute.
+   * 
+   * @see BadTypeException
+   */
+  @Test(expected = BadTypeException.class)
+  public void testSymbolException() throws BadTypeException {
+    //edited getSymbol() to throw BadTypeException if type is not symbol
+    Entry n = new Entry(5);
+    n.getSymbol();
+  }
+  
+  /**
+   * Test 18
+   * Tests if the getSymbol() method throws a BadTypeException
+   * for an Entry that doesn't hold an other attribute.
+   * 
+   * @see BadTypeException
+   */
+  @Test(expected = BadTypeException.class)
+  public void testSymbolExceptionAgain() throws BadTypeException {
+    //another test for bad type if type is not a symbol
+    Entry n = new Entry("h");
+    n.getSymbol();
+  }
+  
+  /**
+   * Test 19
+   * Tests if the equals() method for float Entry objects.
+   */
+  @Test
+  public void testNumberEquals() throws BadTypeException {
+    //added equals() method that tests if two float entries are equal
+    //test float entries for equals() method
+    Entry n = new Entry(5);
+    Entry m = new Entry(5);
+    assertTrue("n == m", n.equals(m));
+    Entry otherNum = new Entry(6);
+    assertFalse("n != otherNum", n.equals(otherNum));
+    Entry p = new Entry("String");
+    assertFalse("n != p", n.equals(p));
+    Entry s = new Entry(Symbol.PLUS);
+    assertFalse("n != s", n.equals(s));
+  }
+  
+  /**
+   * Test 20
+   * Tests if the equals() method for string Entry objects.
+   */
+  @Test
+  public void testStringEquals() throws BadTypeException {
+    //added to equals() method to work for strings
+    //test string entries for equals() method
+    Entry n = new Entry("3 + 2");
+    Entry m = new Entry("3 + 2");
+    assertTrue("n == m", n.equals(m));
+    Entry p = new Entry(5);
+    assertFalse("n != p", n.equals(p)); 
+    Entry k = new Entry("OtherString");
+    assertFalse("n != k", n.equals(k));
+    Entry s = new Entry(Symbol.PLUS);
+    assertFalse("n != s", n.equals(s));
+  }
+  
+  /**
+   * Test 21
+   * Tests if the equals() method for symbol Entry objects.
+   */
+  @Test
+  public void testSymbolEquals() throws BadTypeException {
+    //added to equals() method to work for symbols
+    //test symbol entries for equals() method
+    Entry n = new Entry(Symbol.PLUS);
+    Entry m = new Entry(Symbol.PLUS);
+    assertTrue("n == m", n.equals(m));
+    Entry p = new Entry(5);
+    assertFalse("n != p", n.equals(p));
+    Entry k = new Entry("String");
+    assertFalse("n != k", n.equals(k));
+  }
+}

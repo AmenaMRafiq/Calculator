@@ -1,0 +1,33 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import model.InvalidExpressionException;
+import model.StandardCalc;
+
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the StandardCalc class.
+ * 
+ * @author Amena Rafiq
+ * @see    StandardCalc
+ */
+public class TestStandardCalc {
+
+  StandardCalc stanCalc;
+
+  @Before
+  public void setUp() {
+    stanCalc = new StandardCalc();
+  }
+
+  @Test
+  public void testEvaluateReturnResult() throws InvalidExpressionException {
+    //method initially just returns 12.34
+    assertTrue(stanCalc.evaluate("anything") == 12.34);
+  }
+
+}

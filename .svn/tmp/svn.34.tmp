@@ -1,0 +1,11 @@
+package application;
+
+/**
+ * This enum class has the types of calculation.
+ * 
+ * @author Dave Cohen    
+ */
+
+public enum OpType {
+  INFIX, POSTFIX;
+}

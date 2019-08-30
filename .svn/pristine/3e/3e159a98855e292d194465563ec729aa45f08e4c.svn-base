@@ -1,0 +1,14 @@
+package application;
+
+public class CalcModel {
+  Calculator revCalc = Calculator.getInstance();
+  Calculator StandCalc = Calculator.getInstance();
+  
+  public void evaluate(String expression, boolean infix) {
+    getValue(expression);
+  }
+  
+  public String getValue(String expression) {
+    return revCalc.evaluate(expression).toString();
+  }
+}

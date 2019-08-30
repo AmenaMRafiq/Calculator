@@ -1,0 +1,149 @@
+package test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import model.BadTypeException;
+import model.Entry;
+import model.Stack;
+
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the Stack class.
+ * 
+ * @author Amena Rafiq
+ * @see    Stack
+ */
+public class TestStack {
+
+  private Stack myStack;
+
+  @Before
+  public void setUp() {
+    myStack = new Stack();
+  }
+
+  /**
+   * Test 0
+   * Initially tested the array constructor.
+   * Tests the isEmpty() method
+   */
+  @Test
+  public void testArrayConstructor() {
+    //initial method for storing entries is an array
+    //size attribute and isEmpty() method written
+    //myStack = new Stack(); //moved to setUp()
+    assertTrue("Nothing has been pushed, should return true", myStack.isEmpty());
+  }
+  
+  /**
+   * Test 1
+   * Tests the push() method alongside the isEmpty() method.
+   */
+  @Test
+  public void testPush() {
+    //push method written
+    myStack.push(new Entry(5));
+    assertFalse("an entry has been pushed, not empty, expected False", myStack.isEmpty());
+  }
+  
+  /**
+   * Test 2
+   * Tests the size() method.
+   */
+  @Test
+  public void testSize() {
+    //size() method written
+    myStack.push(new Entry(5));
+    assertTrue("one entry pushed, expected true", myStack.size() == 1);
+  }
+  
+  /**
+   * Test 3
+   * Tests the pop() method.
+   */
+  @Test
+  public void testPop() throws IndexOutOfBoundsException, BadTypeException {
+    //pop() method written
+    myStack.push(new Entry(5.5));
+    assertTrue("value == 5.5", myStack.pop().getValue() == 5.5);
+    assertTrue("size == 0", myStack.size() == 0);
+    assertTrue("stack is empty", myStack.isEmpty());
+  }
+  
+  /**
+   * Test 4
+   * Tests the all of the methods created up to this point.
+   */
+  @Test
+  public void testAllMethodsSoFar() throws IndexOutOfBoundsException, BadTypeException {
+    //testing all the methods created up to this point
+    myStack.push(new Entry(5));
+    myStack.push(new Entry(6));
+    assertTrue("size == 2", myStack.size() == 2);
+    assertTrue("value == 6", myStack.pop().getValue() == 6);
+    assertTrue("size == 1", myStack.size() == 1);
+    assertTrue("value == 5", myStack.pop().getValue() == 5);
+    assertTrue("size == 0", myStack.size() == 0);
+    assertTrue("stack is empty", myStack.isEmpty());
+  }
+  
+  /**
+   * Test 5
+   * Tests the top() method.
+   */
+  @Test
+  public void testTop() throws IndexOutOfBoundsException, BadTypeException {
+    //top() method written
+    myStack.push(new Entry(5));
+    assertTrue("top == 5", myStack.top().getValue() == 5);
+  }
+  
+  /**
+   * Test 6
+   * Since arrays are fixed size and creating a an array to hold 100 entries is 
+   * not space efficient, I decided to change to use an ArrayList. 
+   * All current methods were modified to adhere to ArrayList functions.
+   * Old array code has been commented out in the Stack class.
+   * The following tests  are a combination of tests 4 and 5
+   * to make sure everything still works.
+   */
+  @Test
+  public void testArrayListStructure() throws IndexOutOfBoundsException, BadTypeException { 
+    myStack.push(new Entry(5));
+    myStack.push(new Entry(6));
+    assertTrue(" size should be 2", myStack.size() == 2);
+    assertTrue("value == 6", myStack.pop().getValue() == 6);
+    assertTrue("size should be 1", myStack.size() == 1);
+    assertTrue("value == 5", myStack.pop().getValue() == 5);
+    myStack.push(new Entry(5));
+    assertTrue("value == 5", myStack.top().getValue() == 5);
+    assertTrue("size should be 1", myStack.size() == 1);
+    assertFalse("stack is empty", myStack.isEmpty());
+  }
+
+  /**
+   * Test 7
+   * Tests the IndexOutOfBoundsException added into the pop() method.
+   */
+  @Test(expected = IndexOutOfBoundsException.class)
+  public void testPopException() throws IndexOutOfBoundsException, BadTypeException {
+    //edited pop() to throw IndexOutOfBoundsException if stack is empty
+    myStack.push(new Entry(5));
+    assertTrue("value == 5", myStack.pop().getValue() == 5);
+    myStack.pop().getValue(); // no more entries left to pop, should raise an exception
+  }
+
+  /**
+   * Test 8
+   * Tests the IndexOutOfBoundsException added into the top() method.
+   */
+  @Test(expected = IndexOutOfBoundsException.class)
+  public void testTopException() {
+    //edited top() method to throw exception if stack is empty
+    myStack.top(); // nothing has been pushed; there is nothing at the top of the stack
+    //exception should be raised 
+  }
+}

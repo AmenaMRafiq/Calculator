@@ -1,0 +1,20 @@
+package model;
+/**
+ * A custom subclass of Exception used for the getValue(), getString(), getSymbol()
+ * and getType() methods in Entry class. Used to check the type of an Entry object.
+ * 
+ * @author Amena Rafiq
+ * @see    Entry Exception
+ */
+public class BadTypeException extends Exception {
+
+  /**
+   * Can the marker please give feedback as to why eclipse insisted on having this,
+   * because I don't understand this serial ID.
+   */
+  private static final long serialVersionUID = 1L;
+
+  public BadTypeException(String message) {
+    super(message);
+  }
+}

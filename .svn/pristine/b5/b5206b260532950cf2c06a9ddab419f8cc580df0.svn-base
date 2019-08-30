@@ -1,0 +1,25 @@
+package application;
+
+/**
+ * This class allows the calculation of string expressions.
+ * 
+ * @author Dave Cohen    
+ */
+
+public final class Calculator {
+
+  private Calculator() {}
+  
+  private static Calculator instance = null;
+
+  public static Calculator getInstance() {
+    if (instance == null) {
+      instance = new Calculator();
+    }
+    return instance;
+  }
+
+  public Double evaluate(String text) {
+    return 2.5;
+  }
+} 

@@ -1,0 +1,18 @@
+package application;
+
+public class CalcController {
+  private CalcModel MyModel;
+  private CalcView MyView;
+  
+  private void handleEvaluate() {
+      String question = MyView.getUserInput();
+      MyModel.evaluate(question, false);
+      MyView.setText(MyModel.getValue(question));      
+  }
+  
+  CalcController(CalcModel model, CalcView view) {
+    MyModel = model;
+    MyView = view;
+    view.addEvaluateListener(this::handleEvaluate);
+  }
+}

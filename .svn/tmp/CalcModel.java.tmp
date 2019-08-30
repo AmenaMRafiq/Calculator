@@ -1,0 +1,36 @@
+package application;
+
+import model.Calculator;
+import model.InvalidExpressionException;
+import model.RevPolishCalc;
+import model.StandardCalc;
+
+/**
+ * This class is the model. (Add more explanation later and finish the javadoc before merge).
+ * Idea and code written by Dave Cohen, adapted into project by Amena Rafiq.
+ * 
+ * @author Dave Cohen Amena Rafiq 
+ */
+
+public class CalcModel {
+  RevPolishCalc revCalc = new RevPolishCalc();
+  StandardCalc standCalc = new StandardCalc();
+  Calculator current = (Calculator) standCalc;
+  
+  public void setType(boolean infix) {
+    if (infix) {
+      current = (Calculator) standCalc;
+    } else {
+    current = (Calculator) revCalc;
+    }
+    
+  }
+  
+  public double evaluate(String expression) throws InvalidExpressionException {
+    return current.evaluate(expression);
+  }
+  
+  public String getValue(String expression) throws InvalidExpressionException {
+  return Double.toString(evaluate(expression));
+  }
+}

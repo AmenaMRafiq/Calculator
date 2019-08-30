@@ -1,0 +1,35 @@
+package testRunnerAndSuite;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+import test.TestCalcModel;
+import test.TestEntry;
+import test.TestNumStack;
+import test.TestOpStack;
+import test.TestRevPolishCalc;
+import test.TestStack;
+import test.TestStandardCalc;
+import test.TestStrStack;
+import test.TestSymbol;
+import test.TestType;
+
+@RunWith(Suite.class)
+
+@Suite.SuiteClasses({
+    //BOTTOM UP INTEGRATION TESTING
+    TestSymbol.class,
+    TestType.class,
+    TestEntry.class,
+    TestStack.class,
+    TestNumStack.class,
+    TestStrStack.class, 
+    TestOpStack.class,
+    TestRevPolishCalc.class,
+    TestStandardCalc.class,
+    TestCalcModel.class
+})
+
+public class TestSuite {
+
+}

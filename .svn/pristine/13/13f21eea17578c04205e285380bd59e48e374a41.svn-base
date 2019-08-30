@@ -1,0 +1,39 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import model.BadTypeException;
+import model.NumStack;
+import model.RevPolishCalc;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the RevPolishCalc class.
+ * 
+ * @author Amena Rafiq
+ * @see    RevPolishCalc
+ */
+
+public class TestRevPolishCalc {
+  
+  RevPolishCalc revCalc;
+  
+  @Before
+  public void setUp() {
+    revCalc = new RevPolishCalc();
+  }
+
+//  @Test
+//  public void testEvaluate1() throws IndexOutOfBoundsException, BadTypeException {
+//    //method initially just returned 5
+//    assertTrue(revCalc.evaluate("3 + 2") == 5);
+//  }
+  
+  @Test
+  public void testEvaluate2() throws IndexOutOfBoundsException, BadTypeException {
+    assertTrue(revCalc.evaluate("3 2 +") == 5);
+  }
+
+}

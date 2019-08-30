@@ -1,0 +1,11 @@
+package application;
+
+
+public class CalcMVCDriver {
+  
+  public static void main(String[] args) {       
+    CalcModel model = new CalcModel();
+    CalcView view = CalcView.getInstance();
+    new CalcController(model, view);
+  }
+}

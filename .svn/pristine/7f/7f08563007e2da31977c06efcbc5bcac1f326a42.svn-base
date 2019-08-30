@@ -1,0 +1,19 @@
+package model;
+
+/**
+ * This class evaluates infix string expressions.
+ * 
+ * @author Amena Rafiq
+ * @see    TestStandardCalc OpStack StrStack Stack Entry 
+ */
+
+public class StandardCalc {
+  
+  private OpStack values = new OpStack();
+  private RevPolishCalc rpCalc = new RevPolishCalc();
+  
+  public double evaluate(String string) {
+    return 5;
+  }
+
+}

@@ -1,0 +1,74 @@
+package model;
+
+import java.util.Scanner;
+
+/**
+ * This class evaluates reverse polish string expressions.
+ * 
+ * @author Amena Rafiq
+ * @see    TestRevPolish NumStack Stack Entry 
+ */
+public class RevPolishCalc implements Calculator {
+
+  private NumStack values = new NumStack();
+
+  public double evaluate(String expression) throws InvalidExpressionException {
+    Scanner scanner = new Scanner(expression);
+    Entry operator = null; 
+    double result = 0;
+
+    while (scanner.hasNext()) {
+
+      while (scanner.hasNextDouble()) {
+        values.push(scanner.nextDouble()); 
+      } 
+      double secondValue;
+      try {
+        secondValue = values.pop();
+      } catch (IndexOutOfBoundsException e) {
+        scanner.close();
+        throw new InvalidExpressionException("Invalid Expression");
+      } catch (BadTypeException e) {
+        scanner.close();
+        throw new InvalidExpressionException("Invalid Expression");
+      } 
+      double firstValue;
+      try {
+        firstValue = values.pop();
+      } catch (IndexOutOfBoundsException e) {
+        scanner.close();
+        throw new InvalidExpressionException("Invalid Expression");
+      } catch (BadTypeException e) {
+        scanner.close();
+        throw new InvalidExpressionException("Invalid Expression");
+      }
+
+      if (scanner.hasNext()) {
+        operator = new Entry(scanner.next());
+      }
+
+      if (operator != null) {
+        try {
+          switch (operator.getSymbol()) {
+          case TIMES: result = firstValue * secondValue;
+          break;
+          case DIVIDE: result = firstValue / secondValue;
+          break;
+          case PLUS: result = firstValue + secondValue;
+          break;
+          case MINUS: result = firstValue - secondValue;
+          break;
+          default: throw new InvalidExpressionException("Invalid Operator");
+          }
+        } catch (BadTypeException e) {
+          throw new InvalidExpressionException("Invalid Operator");
+        } 
+      }
+
+      values.push(result);
+    }
+    scanner.close();
+    return result;
+  }
+}
+

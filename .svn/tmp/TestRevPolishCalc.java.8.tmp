@@ -1,0 +1,61 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import model.BadTypeException;
+import model.NumStack;
+import model.RevPolishCalc;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the RevPolishCalc class.
+ * 
+ * @author Amena Rafiq
+ * @see    RevPolishCalc
+ */
+
+public class TestRevPolishCalc {
+
+  RevPolishCalc revCalc;
+
+  @Before
+  public void setUp() {
+    revCalc = new RevPolishCalc();
+  }
+
+  //  @Test
+  //  public void testEvaluateReturnResult() throws IndexOutOfBoundsException, BadTypeException {
+  //    //method initially just returned 5
+  //    assertTrue(revCalc.evaluate("3 2 +") == 5);
+  //  }
+
+  @Test
+  public void testEvaluatePushPop() throws IndexOutOfBoundsException, BadTypeException {
+    //method now pushes and pops double values, but always adds them together 
+    assertTrue(revCalc.evaluate("3 2 +") == 5);
+    assertTrue(revCalc.evaluate("3.1 6.5 +") == 9.6);
+  }
+
+  @Test
+  public void testEvaluateReadOperator() throws IndexOutOfBoundsException, BadTypeException {
+    //method now reads operators 
+    assertTrue(revCalc.evaluate("3 2 -") == 1);
+    assertTrue(revCalc.evaluate("2.5 4 *") == 10);
+  }
+
+  @Test
+  public void testEvaluateLongerExpression() throws IndexOutOfBoundsException, BadTypeException {
+    //method now reads long expressions
+    assertTrue(revCalc.evaluate("3 2 - 6 *") == 6);
+    assertTrue(revCalc.evaluate("5 5 + 2 /") == 5);
+  }
+
+  @Test (expected = BadTypeException.class)
+  public void testEvaluateInvalidOperator () throws IndexOutOfBoundsException, BadTypeException {
+    //method now throws bad type expression for invalid operators 
+    assertTrue(revCalc.evaluate("3 2 - 6 m") == 6);
+  }
+
+}

@@ -1,0 +1,52 @@
+package model;
+
+/**
+ * StrStack class represents stack of string values.
+ * This acts as a facade to assist Shunting Algorithm.
+ * 
+ * @author Amena Rafiq
+ * @see    Stack Entry  
+ */
+
+public class StrStack {
+
+  private Stack strStack = new Stack();
+
+  public boolean isEmpty() {
+    return strStack.isEmpty();
+  }
+
+  /**
+   * Pushes an Entry object with a string value on top of the stack. 
+   * In doing so, the size of the stack is incremented.
+   *
+   * @param s     the string value for the Entry object to be pushed onto the stack
+   * @see         Entry Stack
+   */
+  public void push(String s) {
+    strStack.push(new Entry(s));
+    
+  }
+
+  public int size() {
+    return strStack.size();
+  }
+
+  /**
+   * Returns the string of and removes the Entry object that was at the top of the stack. 
+   * The size of the stack is decremented. 
+   *
+   * @return                            the value of the Entry object at the top of the stack
+   * @throws IndexOutOfBoundsException  if the stack does not contain any entries, an exception 
+   *                                    is thrown to indicate that the stack is empty   
+   *         BadType                    if the entry value is of bd type                          
+   * @see                               IndexOutOfBoundsException Entry
+   */
+  public String pop() throws IndexOutOfBoundsException, BadTypeException {
+    if (isEmpty()) {
+      throw new IndexOutOfBoundsException("Exception: StrStack is Empty");
+    }
+    return strStack.pop().getString(); 
+  }
+  
+}

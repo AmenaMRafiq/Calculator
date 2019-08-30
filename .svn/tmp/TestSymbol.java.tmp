@@ -1,0 +1,65 @@
+package test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+import org.junit.Test;
+
+import model.BadTypeException;
+import model.Entry;
+import model.Symbol;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the Symbol class.
+ * It tests the toString() method.
+ * 
+ * @author Amena Rafiq
+ * @see    Symbol
+ */
+public class TestSymbol {
+  
+  @Test
+  public void test0() {
+    assertEquals(Symbol.LEFTBRACKET.toString(), "(");
+  }
+  
+  @Test
+  public void test1() {
+    assertEquals(Symbol.RIGHTBRACKET.toString(), ")");
+  }
+  
+  @Test
+  public void test2() {
+    assertEquals(Symbol.TIMES.toString(), "*");
+  }
+  
+  @Test
+  public void test3() {
+    assertEquals(Symbol.DIVIDE.toString(), "/");
+  }
+  
+  @Test
+  public void test4() {
+    assertEquals(Symbol.PLUS.toString(), "+");
+  }
+  
+  @Test
+  public void test5() {
+    assertEquals(Symbol.MINUS.toString(), "-");
+  }
+  
+  @Test
+  public void test6() {
+    assertEquals(Symbol.INVALID.toString(), "Invalid");
+  }
+  
+  @Test
+  public void testEntrySymbol() throws BadTypeException { 
+    //BadTypeException created after and added here
+    //test against an entry
+    Entry plus = new Entry("+");
+    assertEquals(plus.getSymbol().toString(), Symbol.PLUS.toString());
+    assertFalse(plus.getSymbol().toString().equals(Symbol.MINUS.toString()));
+  }
+}
+
+

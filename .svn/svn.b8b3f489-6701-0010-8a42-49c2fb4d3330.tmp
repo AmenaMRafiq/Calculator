@@ -1,0 +1,18 @@
+package model;
+
+/**
+ * A custom subclass of Exception used for used to check the inputed user expression.
+ * 
+ * @author Amena Rafiq
+ * @see    NumStack RevPolishCalc StandardCalc Calculator Exception
+ */
+
+@SuppressWarnings("serial")
+public class InvalidExpressionException extends Exception {
+  
+  public InvalidExpressionException(String message) {
+    super(message);
+    
+  }
+
+}

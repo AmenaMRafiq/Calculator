@@ -1,0 +1,58 @@
+package test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import model.BadTypeException;
+import model.OpStack;
+import model.Symbol;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the OpStack class.
+ * 
+ * @author Amena Rafiq
+ * @see    OpStack
+ */
+
+public class TestOpStack {
+
+  private OpStack opStack;
+  
+  @Before
+  public void setUp() {
+    opStack = new OpStack();
+  }
+  
+  @Test
+  public void testIsEmpty() {
+    assertTrue("nothing has been pushed, should be empty", opStack.isEmpty());
+  }
+  
+  /**
+   * Tests the push() method alongside the isEmpty() method.
+   */
+  @Test
+  public void testPush() {
+    //push method written
+    opStack.push(Symbol.PLUS);
+    assertFalse("an entry has been pushed, not empty, expected False", opStack.isEmpty());
+    assertTrue("one entry pushed, expected true", opStack.size() == 1);
+  }
+  
+  /**
+   * Tests the pop() method.
+   */
+  @Test
+  public void testPop() throws IndexOutOfBoundsException, BadTypeException {
+    //pop() method written
+    opStack.push(Symbol.DIVIDE);
+    assertTrue("value == Symbol.DIVIDE", opStack.pop() == Symbol.DIVIDE);
+    assertTrue("size == 0", opStack.size() == 0);
+    assertTrue("stack is empty", opStack.isEmpty());
+  }
+  
+}

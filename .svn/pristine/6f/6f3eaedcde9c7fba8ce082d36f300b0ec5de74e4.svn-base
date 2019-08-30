@@ -1,0 +1,21 @@
+package application;
+
+import java.util.function.Consumer;
+
+/**
+ * This class is the viewInterface.
+ * 
+ * @author Dave Cohen    
+ */
+
+public interface ViewInterface {
+
+  void addCalcObserver(Observer f);
+
+  void addTypeObserver(Consumer<OpType> l);
+
+  String getQuestion();
+
+  void setAnswer(String a);
+
+}

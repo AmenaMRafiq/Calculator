@@ -1,0 +1,23 @@
+package application;
+
+/**
+ * This class is the controller.
+ * 
+ * @author Dave Cohen    
+ */
+
+public class Controller {
+  Calculator calc = Calculator.getInstance();
+  ViewInterface myView = null;
+
+  private void calculateAction() {
+    Double a = calc.evaluate(myView.getQuestion());
+    myView.setAnswer(a.toString());
+  }
+
+  public Controller(ViewInterface view) {
+    myView = view;
+    view.addCalcObserver(this::calculateAction);
+  }
+
+}

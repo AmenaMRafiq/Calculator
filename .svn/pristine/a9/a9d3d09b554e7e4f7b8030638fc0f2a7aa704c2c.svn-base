@@ -1,0 +1,44 @@
+package test;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+import test.CapacityTesting;
+import test.FaultInjection;
+import test.TestCalcModel;
+import test.TestEntry;
+import test.TestNumStack;
+import test.TestOpStack;
+import test.TestRevPolishCalc;
+import test.TestStack;
+import test.TestStandardCalc;
+import test.TestStrStack;
+import test.TestSymbol;
+import test.TestType;
+
+@RunWith(Suite.class)
+
+@Suite.SuiteClasses({
+    //UNIT TESTS
+    TestSymbol.class,
+    TestType.class,
+    //BOTTOM UP INTEGRATION TESTING AND REGRESSION TESTING
+    TestEntry.class,
+    TestStack.class,
+    TestNumStack.class,
+    TestStrStack.class, 
+    TestOpStack.class,
+    TestRevPolishCalc.class,
+    TestStandardCalc.class,
+    TestCalcModel.class,
+    //CAPACITY TESTING
+    CapacityTesting.class,
+    //FAULT INJECTION TESTING
+    FaultInjection.class
+    //Performed CORRIDOR TESTING with real test subject 
+    
+})
+
+public class TestSuite {
+
+}

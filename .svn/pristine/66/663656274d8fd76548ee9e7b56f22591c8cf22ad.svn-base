@@ -1,0 +1,62 @@
+package test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import model.BadTypeException;
+import model.NumStack;
+import org.junit.Before;
+
+import org.junit.Test;
+
+/**
+ * This test class holds all of the J-Unit tests recorded for the NumStack class.
+ * 
+ * @author Amena Rafiq
+ * @see    NumStack
+ */
+public class TestNumStack {
+
+  private NumStack numStack;
+
+  @Before
+  public void setUp() {
+    numStack = new NumStack();
+  }
+  
+  /**
+   * Initially tested the constructor. Moved to setup.
+   * Tests the isEmpty() method
+   */
+  @Test
+  public void testIsEmpty() {
+    //initial method for storing entries is an array
+    //size attribute and isEmpty() method written
+    assertTrue("Nothing has been pushed, should return true", numStack.isEmpty());
+  }
+  
+  /**
+   * Tests the push() method alongside the isEmpty() method.
+   */
+  @Test
+  public void testPush() {
+    //push method written
+    numStack.push(3.0);
+    assertTrue("one entry pushed, expected true", numStack.size() == 1);
+    assertFalse("one entry has been pushed, should return false", numStack.isEmpty());
+    
+  }
+  
+  /**
+   * Tests the pop() method.
+   */
+  @Test
+  public void testPop() throws IndexOutOfBoundsException, BadTypeException {
+    //pop() method written
+    numStack.push(5.5);
+    assertTrue("value == 5.5", numStack.pop() == 5.5);
+    assertTrue("size == 0", numStack.size() == 0);
+    assertTrue("stack is empty", numStack.isEmpty());
+  }
+
+}

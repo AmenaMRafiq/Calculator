@@ -1,0 +1,16 @@
+package model;
+
+/**
+ * This class evaluates infix expressions.
+ * 
+ * @author Amena Rafiq
+ * @see    TestStandardCalc  
+ */
+
+public class StandardCalc implements Calculator {
+  
+  public double evaluate(String expression) throws InvalidExpressionException { 
+    return 12.34;
+  }
+
+}
